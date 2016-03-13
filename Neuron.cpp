@@ -20,15 +20,15 @@ void Neuron::reset()
 }
 
 // Returns true if charge reaches threshold, otherwise returns false;
-bool Neuron::is_firing()
+bool Neuron::firing()
 {
     return charge >= threshold;
 }
 
 // Returns charge if firing, otherwise returns zero;
-float Neuron::get_potential()
+float Neuron::potential()
 {
-    if(is_firing())
+    if(firing())
         return charge;
     return 0;
 }
@@ -36,8 +36,8 @@ float Neuron::get_potential()
 // Multiplies given neuron's potential by it's corresponding weight, adds to charge;
 void Neuron::update(Neuron& neuron, unsigned int index)
 {
-    charge += neuron.get_potential() * weights[index];
-    if(neuron.is_firing())
+    charge += neuron.potential() * weights[index];
+    if(neuron.firing())
         weights[index] += w_increase;
     weights[index] -= w_decrease;
 }

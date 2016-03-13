@@ -13,8 +13,8 @@ class Neuron
 public:
     Neuron(unsigned int);
     void reset();
-    bool is_firing();
-    float get_potential();
+    bool firing();
+    float potential();
     void update(Neuron&, unsigned int);
 };
 
