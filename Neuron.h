@@ -20,7 +20,7 @@ public:
     void reset();
     bool firing();
     float potential();
-    void update(Neuron*, unsigned int, float);
+    void update(Neuron*, unsigned int);
     void activate();
 };
 

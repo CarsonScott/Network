@@ -3,7 +3,7 @@
 // Sets number of neurons to given network size;
 Network::Network(unsigned int size, unsigned int in, unsigned int out)
 {
-    memory.set_time(100);
+    memory.set_time(50);
     for(int i = 0; i < size; i++)
     {
         Neuron* n = new Neuron(size);
@@ -21,6 +21,7 @@ Network::Network(unsigned int size, unsigned int in, unsigned int out)
         prob.push_back(p);
     }
     timer = 0;
+    log.open("log.txt");
 }
 
 // Passes each neuron to the update function of every other neuron;
@@ -36,34 +37,32 @@ void Network::update(float dt)
 
     memory.update(dt);
 
-    timer++;
-    if(timer >= inputs.size())
+    if(timer = inputs.size())
     {
         timer = 0;
     }
+    timer++;
     inputs[timer]->activate();
 
     for(int i = 0; i < nodes.size(); i++)
     {
         for(int j = 0; j < nodes.size(); j++)
         {
-            nodes[i]->update(nodes[j], j, dt);
+            nodes[i]->update(nodes[j], j);
         }
         if(nodes[i]->firing())
         {
             memory.add(nodes[i], i);
         }
 
+        log << "\n";
         for(int j = 0; j < prob[i]->size(); j++)
         {
-            if(i == 5)
+            memory.apply(&prob[i]->distribution(j), j);
+            if(prob[i]->size())
             {
-                memory.apply(&prob[i]->distribution(j), j);
-                if(prob[i]->size() > 20)
-                {
-                    std::cout << prob[i]->distribution(j).variance() << ", ";
-                }
-                std::cout << "\n";
+                float variance = prob[i]->distribution(j).deviation();
+                log << variance << ", ";
             }
         }
 

@@ -2,6 +2,7 @@
 #define NETWORK_H_INCLUDED
 
 #include <iostream>
+#include <fstream>
 #include "Neuron.h"
 #include "Memory.h"
 #include "Probability.h"
@@ -17,6 +18,7 @@ class Network
     NodePtrs outputs;
     Memory memory;
     float timer;
+    std::ofstream log;
 public:
     Network(unsigned int, unsigned int, unsigned int);
     void update(float);

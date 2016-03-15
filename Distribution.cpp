@@ -13,13 +13,20 @@ float Distribution::mean()
 
 float Distribution::variance()
 {
-    float v = 0;
-    for(int i = 0; i < data.size(); i++)
+    if(data.size() > 3)
     {
-        v += pow(data[i] - mean(), 2);
+        variation = (variation*(data.size()-2) + pow(data.back() - expected, 2)) / (data.size() -1);
     }
-    v /= data.size()-1;
-    return v;
+    else
+    {
+        float v = 0;
+        for(int i = 0; i < data.size(); i++)
+        {
+            v += pow(data[i] - expected, 2);
+        }
+        variation = v / (data.size()-1);
+    }
+    return variation;
 }
 
 float Distribution::deviation()
@@ -31,4 +38,13 @@ float Distribution::deviation()
 void Distribution::add(float v)
 {
     data.push_back(v);
+
+    if(data.size() > 1)
+    {
+        expected = (expected*(data.size()-1) + v)/data.size();
+    }
+    else
+    {
+        expected = mean();
+    }
 }

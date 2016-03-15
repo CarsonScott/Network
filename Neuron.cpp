@@ -5,7 +5,7 @@ Neuron::Neuron(unsigned int net_size)
 {
     for(int i = 0; i < net_size; i++)
     {
-        weights.push_back(rand()%100/10);
+        weights.push_back(rand()%100/100);
     }
 
     threshold = 0;
@@ -37,7 +37,7 @@ float Neuron::potential()
 }
 
 // Multiplies given neuron's potential by it's corresponding weight, adds to charge;
-void Neuron::update(Neuron* neuron, unsigned int index, float dt)
+void Neuron::update(Neuron* neuron, unsigned int index)
 {
     charge += neuron->potential() * weights[index];
     if(charge < -1)

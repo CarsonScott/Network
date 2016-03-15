@@ -9,6 +9,8 @@
 class Distribution
 {
     std::vector<float> data;
+    float expected;
+    float variation;
 public:
     float mean();
     float variance();

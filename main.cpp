@@ -5,12 +5,11 @@ int main()
 {
     srand(time(NULL));
 
-    std::vector<float> potentials;
-
-    Network net(50, 5, 3);
+    Network net(100, 10, 5);
     float counter = 0;
-    while(counter < 100000)
+    while(counter < 1000)
     {
+
         net.update(.1);
         counter += 1;
     }

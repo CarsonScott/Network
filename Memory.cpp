@@ -34,7 +34,11 @@ void Memory::apply(Distribution* dist, int id)
     for(int i = 0; i < fired.size(); i++)
     {
         float data = abs(fired[id].time() - fired[i].time());
-        dist->add(data);
+        if(data != 0)
+        {
+            data = data/t_limit * t_limit;
+        }
+        dist->add(data*10);
     }
 }
 

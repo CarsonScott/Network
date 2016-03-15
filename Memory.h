@@ -14,7 +14,6 @@ class Memory
     std::vector<FiredInput> fired;
 public:
     void set_time(float);
-    void add(NodePtrs&);
     bool add(Neuron*, int);
     void update(float);
     void apply(Distribution*, int);
