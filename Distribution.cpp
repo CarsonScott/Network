@@ -7,7 +7,8 @@ float Distribution::mean()
     {
         m += data[i];
     }
-    return m/data.size();
+    m /= data.size();
+    return m;
 }
 
 float Distribution::variance()
@@ -17,16 +18,17 @@ float Distribution::variance()
     {
         v += pow(data[i] - mean(), 2);
     }
-    return v/data.size() -1;
+    v /= data.size()-1;
+    return v;
 }
 
 float Distribution::deviation()
 {
-    return sqrt(variance());
+    float d = sqrt(variance());
+    return d;
 }
 
 void Distribution::add(float v)
 {
     data.push_back(v);
-    expected = mean();
 }

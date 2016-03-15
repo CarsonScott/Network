@@ -1,8 +1,21 @@
 #include "Memory.h"
 
-void Memory::add(Neuron& input, int id)
+void Memory::set_time(float t)
 {
+    t_limit = t;
+}
+
+bool Memory::add(Neuron* input, int id)
+{
+    for(int i = 0; i < fired.size(); i++)
+    {
+        if(fired[i].id() == id)
+        {
+            return false;
+        }
+    }
     fired.push_back(FiredInput(input, t_limit, id));
+    return true;
 }
 
 void Memory::update(float dt)
@@ -16,14 +29,16 @@ void Memory::update(float dt)
     }
 }
 
-void Memory::apply(Distribution& dist, int id)
+void Memory::apply(Distribution* dist, int id)
 {
     for(int i = 0; i < fired.size(); i++)
     {
-        if(i != id)
-        {
-            float data = std::abs(fired[i].time() - fired[id].time());
-            dist.add(fired[i].time());
-        }
+        float data = abs(fired[id].time() - fired[i].time());
+        dist->add(data);
     }
+}
+
+int Memory::size()
+{
+    return fired.size();
 }

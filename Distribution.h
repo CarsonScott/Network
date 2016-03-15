@@ -8,7 +8,6 @@
 
 class Distribution
 {
-    float expected;
     std::vector<float> data;
 public:
     float mean();

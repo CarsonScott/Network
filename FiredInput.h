@@ -9,7 +9,7 @@ class FiredInput
     float timer;
     unsigned int index;
 public:
-    FiredInput(Neuron&, float, int);
+    FiredInput(Neuron*, float, int);
     bool update(float);
     float time();
     unsigned int id();

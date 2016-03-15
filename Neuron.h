@@ -2,10 +2,15 @@
 #define NEURON_H_INCLUDED
 
 #include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+#include <iostream>
 
 class Neuron
 {
     float charge;
+    float limit;
     float threshold;
     float w_increase;
     float w_decrease;
@@ -15,7 +20,8 @@ public:
     void reset();
     bool firing();
     float potential();
-    void update(Neuron&, unsigned int);
+    void update(Neuron*, unsigned int, float);
+    void activate();
 };
 
 #endif // NEURON_H_INCLUDED

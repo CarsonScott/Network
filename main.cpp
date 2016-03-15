@@ -3,10 +3,15 @@
 
 int main()
 {
+    srand(time(NULL));
 
-    Network net(500, 10, 10);
-    for(int i = 0; i < 100; i++)
+    std::vector<float> potentials;
+
+    Network net(50, 5, 3);
+    float counter = 0;
+    while(counter < 100000)
     {
-        net.update(i);
+        net.update(.1);
+        counter += 1;
     }
 }

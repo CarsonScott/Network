@@ -13,10 +13,12 @@ class Memory
     float t_limit;
     std::vector<FiredInput> fired;
 public:
+    void set_time(float);
     void add(NodePtrs&);
-    void add(Neuron&, int);
+    bool add(Neuron*, int);
     void update(float);
-    void apply(Distribution&, int);
+    void apply(Distribution*, int);
+    int size();
 };
 
 #endif // MEMORY_H_INCLUDED

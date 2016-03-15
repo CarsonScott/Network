@@ -1,8 +1,8 @@
 #include "FiredInput.h"
 
-FiredInput::FiredInput(Neuron& input, float t_limit, int id)
+FiredInput::FiredInput(Neuron* input, float t_limit, int id)
 {
-    node = &input;
+    node = input;
     timer = t_limit;
     index = id;
 }
